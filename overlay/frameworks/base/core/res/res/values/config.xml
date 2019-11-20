@@ -19,38 +19,72 @@
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <!-- Array of light sensor lux values to define our levels for auto backlight brightness support.
-         The N entries of this array define N + 1 control points as follows:
-         (1-based arrays)
-         Point 1:            (0, value[1]):             lux <= 0
-         Point 2:     (level[1], value[2]):  0        < lux <= level[1]
-         Point 3:     (level[2], value[3]):  level[2] < lux <= level[3]
-         ...
-         Point N+1: (level[N], value[N+1]):  level[N] < lux
-         The control points must be strictly increasing.  Each control point
-         corresponds to an entry in the brightness backlight values arrays.
-         For example, if lux == level[1] (first element of the levels array)
-         then the brightness will be determined by value[2] (second element
-         of the brightness values array).
-         Spline interpolation is used to determine the auto-brightness
-         backlight values for lux levels between these control points.
-         Must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLevels">
-        <item>1</item>
-        <item>4</item>
-        <item>12</item>
+        <item>5</item>
+        <item>10</item>
         <item>20</item>
         <item>40</item>
-        <item>65</item>
-        <item>95</item>
-        <item>140</item>
-        <item>200</item>
-        <item>350</item>
-        <item>650</item>
-        <item>1300</item>
+        <item>80</item>
+        <item>160</item>
+        <item>320</item>
+        <item>640</item>
+        <item>1280</item>
         <item>2000</item>
-        <item>3300</item>
+        <item>4000</item>
         <item>6000</item>
+        <item>9000</item>
+        <item>14000</item>
+        <item>20000</item>
+    </integer-array>
+    <integer-array name="config_ambientThresholdLevels">
+        <item>5</item>
+        <item>10</item>
+        <item>20</item>
+        <item>40</item>
+        <item>80</item>
+        <item>160</item>
+        <item>320</item>
+        <item>640</item>
+        <item>1280</item>
+        <item>2000</item>
+        <item>4000</item>
+        <item>6000</item>
+        <item>9000</item>
+        <item>14000</item>
+    </integer-array>
+    <integer-array name="config_ambientBrighteningThresholds">
+        <item>1000</item> <!-- 1 -->
+        <item>1000</item> <!-- 4 -->
+        <item>1000</item> <!-- 12 -->
+        <item>1000</item> <!-- 20 -->
+        <item>1000</item> <!-- 40 -->
+        <item>1000</item> <!-- 65 -->
+        <item>1000</item> <!-- 90 -->
+        <item>1000</item>
+        <item>1000</item>
+        <item>1000</item>
+        <item>1000</item>
+        <item>1000</item>
+        <item>1000</item>
+        <item>1000</item>
+        <item>1000</item>
+    </integer-array>
+    <integer-array name="config_ambientDarkeningThresholds">
+        <item>1000</item>
+        <item>1000</item>
+        <item>1000</item>
+        <item>1000</item>
+        <item>1000</item>
+        <item>1000</item>
+        <item>1000</item>
+        <item>1000</item>
+        <item>1000</item>
+        <item>1000</item>
+        <item>1000</item>
+        <item>1000</item>
+        <item>1000</item>
+        <item>1000</item>
+        <item>1000</item>
     </integer-array>
     <!-- Array of desired screen brightness in nits corresponding to the lux values
          in the config_autoBrightnessLevels array. As with config_screenBrightnessMinimumNits and
@@ -342,7 +376,33 @@
     <!-- Fast brightness animation ramp rate in brightness units per second-->
     <integer translatable="false" name="config_brightness_ramp_rate_fast">400</integer>
 
+	
+    <!-- Whether or not to skip the initial brightness ramps when the display transitions to
+	
+         STATE_ON. Setting this to true will skip the brightness ramp to the last stored active
+	
+         brightness value and will repeat for the following ramp if autobrightness is enabled. -->
+	
+    <bool name="config_skipScreenOnBrightnessRamp">true</bool>
+	
+	
+    <!-- Initial light sensor event rate in milliseconds for automatic brightness control. This is
+	
+         used for obtaining the first light sample when the device stops dozing.
+	
+	
+         Set this to -1 to disable this feature. -->
+	
+    <integer name="config_autoBrightnessInitialLightSensorRate">-1</integer>
+	
+	
     <!-- Radius of the software rounded corners. -->
-    <dimen name="rounded_corner_radius">48px</dimen>
+	
+    <dimen name="rounded_corner_radius">157px</dimen>
+	
+	
+    <!-- Adjustment for software rounded corners since corners aren't perfectly round. -->
+	
+    <dimen name="rounded_corner_radius_adjustment">25px</dimen>
 
 </resources>
