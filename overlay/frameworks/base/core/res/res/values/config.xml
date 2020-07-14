@@ -400,5 +400,5 @@
          timing(the duration which the vibrator is expected to vibrate for). -->
     <bool name="config_hasOnePlusHapticMotor">true</bool>
 
-
+    <dimen name="rounded_corner_radius">48px</dimen>
 </resources>
