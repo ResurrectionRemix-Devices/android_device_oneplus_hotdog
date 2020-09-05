@@ -44,7 +44,7 @@ PRODUCT_GMS_CLIENTID_BASE := android-oneplus
 
 TARGET_FACE_UNLOCK_SUPPORTED := true
 RR_BUILDTYPE := Official
-# FOD
-TARGET_USES_FOD_HACK := true
+
+WITH_GMS := true
 
 
